@@ -1,0 +1,185 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\newcommand*\pct{\scalebox{0.9}{\%}}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+\title{A Literature Review of Automatic Traceability Link Recovery for Software Change Impact Analysis}
+\author{\IEEEauthorblockN{Author 1, Author 2, Author 3, Author 4, Author 5}
+\IEEEauthorblockA{\text{University}\\
+City, Country \\
+author1@email.com\\
+\{author 1, author 2,author 3, author 4,  author 5 \}@com.au
+}}
+\maketitle
+\begin{abstract}
+In large-scale software development projects, Change  Impact  Analysis  (CIA)  plays  an important  role in  controlling  the  software  design  evolution.  Identifying  and accessing  the  effects  of  the  software  changes  using  traceability links between various software artifacts is a common practice during software  development  cycle.  Recently, research in automated  traceability  link  recovery   has  received  broad  attention  in  the  software  maintenance community,  aiming  to  reduce the cost of  manual maintenance of trace links by developers.  In  this  position  paper,  we  have conducted a Systematic   Literature   Review   (SLR)   related   to   automatic Traceability  Link  Recovery  (TLR)  approaches  with a focus  on CIA.   We   identified   37   relevance   papers   and   investigated deep  insights  into  the  following  aspects  of  CIA : traceability approaches, trace artifacts, CIA coverage, trace links granularity and ways of recovering  traceability links  between two artifacts. The results of our SLR  indicate that there are rooms for further research to leverage the traceability process to support end-to-end CIA  in continuous software development. 
+\end{abstract}
+
+\begin{IEEEkeywords}
+Traceability, Change impact analysis, Information retrieval, Natural language processing
+\end{IEEEkeywords}
+\section{Introduction}
+Software Change Impact Analysis (CIA) plays a vital role in the maintenance of the continuous software development process to control the software design evolution. Bohner defined CIA as “the assessment of the effect of changes – provides techniques to address the problem by identifying the likely ripple-effect of software changes and using this information to re-engineer the software system design” \textcolor{red}{[1]}.  A large and growing body of literature has investigated the automatic traceability link recovery approach to support CIA. 
+In Borg et al. \textcolor{red}{[2]}, the authors present a systematic mapping study on Information Retrieval-based traceability link recovery approach and enhancement strategies covering the articles published during 1999– 2011. There are two other published Systematic Literature Reviews (SLR) that have focused on traceability. Javed and Zdun \textcolor{red}{[4]} reviewed the studies published between 1999 and 2013, on traceability capturing the correlations  between software architecture and source code. This study highlighted that semi-automatic traceability approaches appeared to be the most appropriate way to create trace links between architecture and source code. Recently, Mustafa and Labiche [9] performed an SLR of articles published between 2000 and 2016 on traceability models. However, none of these studies clearly discussed these traceability links recovery approaches under the scenario of CIA. During software development, the CIA can perform in three different phases: (1) requirements artifacts CIA phase, (2) implementation artifacts impact analysis CIA phase, and (3) test artifacts CIA phase. Moreover, these studies do not cover the levels of granularities of trace links, which can assist software engineers in identifying impact areas effectively. In addition, there are no review studies on when to use direct and transitive tracing between software artifacts. 
+Therefore, the aim of this study is to systematically review the state of the art of automatic traceability link recovery approaches under software Change Impact Analysis (CIA) context. We reviewed the primary studies published during 2012 – 2018 focusing on how these primary studies assist CIA process by measuring the level of the support based on trace artifacts, approaches, the granularity of trace links and common ways to recover trace links between artifacts. To this end, the paper aims to answer the following research questions: 
+\begin{itemize}
+\item RQ1. What approaches have been used in recovering traceability links between artifacts to support the CIA process? 
+\item RQ 2. Which phases of CIA process are covered? 
+\item RQ 3. What are the common ways of recovering traceability links between artifacts to support the CIA process? 
+\end{itemize}
+The paper is structured as follows: Section 2 provides a brief overview of automatic traceability link recovery approach. Section 3 presents our research objectives and research questions and deals with our review method covering a description of the search strategy, selection process, quality assessment, data extraction and analysis. Section 4 summarizes the key findings of our study. Lastly, section 5 discusses the meaning of findings and limitation of this paper.
+
+\section{Background}
+In the last decades, Information Retrieval has been widely adopted as a core technology for semi-automatic tools to recover trace [6; 11] links between artifacts which are based on textual similarly. Merten et al. [6] experimented on IR-based tracing approach to recovering trace links between issue reports and source code. Mahmoud and Niu [7] combined IR models with thesaurus support to recover links between requirements and source code. Similarly, Panichella, Lucia and Zaidman [8] proposed to use adaptive user feedback to improve the accuracy of IR-based trace recovery approach. Borg and Runeson [9], reviewed various IR–based trace recovery studies and highlighted that there is no empirical evidence on any IR-based models consistently outperforming another. In [7; 8], the authors propose Machine Learning (ML) classification models to verify the trace links automatically. Recently, combining approaches of Natural Language Processing (NLP) or Deep Learning (DL) methods with link recovery is used to understand the domain knowledge of the system [3; 10], particularly, understanding the correlations between requirements and design documents.   To be able to utilize the right traceability links recovery approach, software engineers need to understand which traceability recovery techniques are suitable for CIA. Furthermore, it is useful to know the granularity of the trace links, how these trace links can be recovered and used in different phases of CIA. 
+\section{Review Method}
+We followed the guidelines of a systematic review by Kitchenham and Charters [5], and developed a protocol to plan, execute and report our results. The following sections outline the processes included in our planning phases.
+\subsection{Objectives and research questions}
+Our goal was to gather the state of the art of the literature related to automatic traceability link recovery under the context of change impact analysis. Therefore, we aim to address the three complementary research questions (RQs), which are specified by the following sub-criteria: 
+
+\textbf{RQ1. What approaches have been used in recovering traceability links between artifacts to support the CIA process? }
+On the one hand, we aim to analyze the techniques used to recover traceability links between software artifacts and the types of software artifacts have been most frequently linked in trace recovery studies. On the other hand, our aim is to study whether the studies introduced any supportting tools and how software engineers can use these tools in their change impact analysis. With respect to the agility of existing approaches, we clustered similar approaches together and discussed the development process.
+
+\textbf{RQ 2. Which phases of CIA process are covered? }
+We aim to investigate three CIA phases, namely; requirements artifacts phase, implementation artifacts phase, and test artifacts phase. Furthermore, we investigated how the levels of granularitities of trace links leverage the change impact analysis process.
+
+\textbf{RQ 3. What are the common ways of recovering traceability links between artifacts to support the CIA process? }
+Our aim is to investigate what are the possible ways to recover traceability links between artifacts and \textcolor{red}{when to use which ways and why are discovered in this question}. 
+
+\subsection{Protocol development}
+In our SLR planning phrase, we undertook an initial informal search for others SLRs concerning a similar scope of this traceability fields. \textcolor{red}{During the informal search}, we have found a few relevant studies, which fit our research objectives. The relevant ones are presented in Section 2. Accompanied by the already identified studies, we used these SLRs as the basis to create our RQs and to develop our review protocol, which was carried out in an iterative way. The protocol document includes SLR research questions, search strategy, study selection criteria (inclusion/exclusion), quality assessment, data extraction strategy, data synthesis and analysis guidelines, which are mentioned briefly in the following sections.
+\subsection{Search strategy and data sources}
+Following the research objectives and the RQs, we elaborated four important terms for searching our literature: (1) Traceability, (2) Recovery, (3) Software Artifacts, and (4) Software development. Then, we selected the range of online databases, run the number of simple searches in title/keywords/abstracts of the publications, and reviewed the coverage. While running the simple search, we identified the synonyms and categorized the search keywords accordingly in Table \ref{table:SearchStrings}.
+
+\begin{table}[h!]
+\begin{tabular} {|p{1.8cm}|p{1.8cm}|p{1.8cm}|p{1.8cm}| }
+\hline
+Category 1 & Category 2 & Category 3 & Category 4\\
+\hline
+Trac*(trace, tracing, traceability) & Information Retrieval OR Natural Language Processing OR NLP
+ & requirement OR specification
+OR architecture
+OR
+design OR code
+OR
+implementation
+OR test OR bug
+ & software*
+(software OR
+system OR
+program) \\
+\hline
+\end{tabular}
+\caption{Search Terms Category}
+\label{table:SearchStrings}
+\end{table}
+
+By concatenating the search terms, we created the search string. The search strings were modified for a various online database.
+\textbf{ON ABSTRACT} (Abstract: trace*) AND (Abstract: “Information Retrieval” OR Abstract: “Natural Language Processing”) AND (Abstract: requirement OR Abstract: specification OR Abstract: architecture OR Abstract: design OR Abstract: code OR Abstract: implementation OR Abstract: test OR Abstract: bug) AND (Abstract: "software" OR Abstract: “system” OR Abstract:
+“program”) 
+\newline
+We applied our search strings in five different databases: (1) ACM Digital Library, (2) IEEE xplore, (3) Science Direct, (4) SpringerLink, (5) Scopus. The unique identification numbers were given to all the documents returned from the search engine.
+
+\subsection{Study Selection}
+Once the initial search results were collected, we applied the selection criteria to filter out the irrelevant studies. We are interested to collect empirical studies that focus on the automatic traceability links recovery approaches which are concerned with the Change Impact Analysis (CIA). The first author initially carried out the selection process.
+Then, co-authors check a sample of papers randomly. The differences were resolved in discussion between authors. The first author conducted the automatic search by using the search strings defined in the search strategy section. The following two steps are used for study selection: 
+\newline\textbf{Step 1: }We discarded the duplicate papers before applying the selection filter. We then scanned the titles and abstracts of the included the papers, which meet all of the following criteria: 
+\begin{itemize}
+\item The publications are written in English
+\item Research explicitly mentioned they are targeting trace recovery relating to software maintenance, change impact analysis and compliance verification 
+\item Studies contain empirical results (e.g., case study, experiments and surveys)
+\end{itemize}
+\textbf{Step 2:} We scanned introduction, results and discussion sections in the papers selected after step 1 and excluded if any of the following criteria met:
+\begin{itemize}
+\item The publications which use rule-based extraction, ontology-based extraction approaches to recover trace links, rather than Information Retrieval (IR), Natural Language Processing (NLP) and Machine Learning (ML). These studies used non Natural Language (NL) artifacts as inputs to perform trace recovery. We limited our studies to trace recovery approaches where NL artifacts are either source or target.
+\item Publications which focus on duplicate/clone detection, class cohesion, cross-cutting, concerns/aspect mining as these topics are not related to traceability links recovery process even if some studies applied Information Retrieval (IR) models
+\end{itemize}
+
+\subsection{Quality assessment}
+We performed a qualifying assessment in two stages as follows:
+\begin{itemize}
+\item \textbf{Assessment of Research Design} – To access the quality of studies, we reviewed the research design mentioned in the papers. This includes accessing the details of research objectives, design, and evaluation. Therefore, we filtered out the studies that have poor research methods and evaluation as well as research objectives not related to automatic traceability link recovery. We used the quality assessment checklist from EBSE guidelines (See the lists of our quality assessment checklist here\footnote{\url{ https://drive.google.com/file/d/1Br07uGJG8PjD2JGP6hKWk51M78SiumWV/view?usp=sharing }.}).
+\end{itemize}
+\begin{itemize}
+\item \textbf{Assessment of publication source and impact }– We checked the CORE ranking to evaluate the quality publications source, and the google scholar citations count to access the impact in the research community. (See the list of our primary studies and its corresponding google scholar citations count in here \footnote{\url{ https://drive.google.com/file/d/1NA6pYZgwaJKWODLH9FEJl-djUvslBMba/view?usp=sharing }.}).
+\end{itemize}
+\subsection{Data extraction and analysis}
+Guided by the research questions, we extracted the following demographic data for review: title, authors, type of outlet (journal or conference), name of outlets, publication year, full citation, type of trace artifacts, trace direction, trace, recovery technique, trace recovery purpose, enhancement strategy, quality of evaluation (e.g, research design) and CIA coverage. Table \ref{table:SearchResults} presents the search and selection summary.
+
+\begin{table}[h!]
+\begin{tabular} {|p{2.5cm}|p{1cm}|p{1cm}|p{1cm}| }
+\hline
+\textbf{Online Database } & \textbf{Results} & \textbf{Step 1} & \textbf{Step 2}\\
+\hline
+IEEE xplore & 639 &132 & 21 \\
+\hline
+Springerlink & 300 &59 & 6\\
+\hline
+ Science Direct & 23 &8 & 4\\
+ \hline
+  ACM Digital Library & 578 &21 & 6\\
+  \hline
+   Scopus & 169 &28 & 0\\
+   \hline
+  \textbf{Total} & \textbf{1709} &\textbf{248} & \textbf{37}\\
+      \hline
+\end{tabular}
+\caption{Search and selection summary}
+\label{table:SearchResults}
+\end{table}
+\section{Results}
+We have included 37 relevance studies in this review. First, we presents characteristics of the studies and show qualitative data (e.g., publication channel, publication years, and approaches). Second, we state our findings related to the RQs. 
+\subsection{Summary of studies}
+Concerning the publication channel, the studies were published in conference proceedings, workshops and scientific journals. In comparison, 27 papers (73\%) of the included studies where published in conference proceedings, 9 papers (24\%) appeared in journals and only 1 paper (3\%) from workshop.
+Table 3 presents the distributions of the studies underlying traceability link recovery approaches. We categorized the primary studies under five distinct engineering fields namely; Information Retrieval (IR), Machine Learning (ML), Natural Language Processing (NLP), Mining Software Repositories (MSR) and Deep Neural Network  (DNN).  
+\begin{table}[h!]
+\begin{tabular} {|p{1.5cm}|p{1cm}|p{1cm}|p{1cm}| p{1cm}|p{1cm}|}
+\hline
+\textbf{Year \textbackslash Approaches} & \textbf{IR} & \textbf{ML} & \textbf{NLP} & \textbf{MSR} & \textbf{DNN}\\
+\hline
+2012 & [3; 10; 15; 30; 32] &[15; 32] & & [10] & \\
+\hline
+2013 & [1; 2; 11; 12; 33; 34] & & & [1; 2] & \\
+\hline
+2014 & [4; 7] & & & & \\
+\hline
+2015 & [31; 38] & & & [38] & \\
+\hline
+2016 & [22-24; 35; 39] & & & [22; 35] & \\
+\hline
+2017 & [5; 9; 16; 25; 27] &[13; 19; 25; 28] &[18; 43] & [5; 16]&[18] \\
+\hline
+2018 & [14; 17; 26; 36; 37; 40] &[26; 37]& [14; 41] & & [41]\\
+\hline
+\end{tabular}
+\caption{Studies categorized by engineering fields}
+\label{table:StudyTrends}
+\end{table}
+
+\subsection{(RQ1) 
+What approaches have been used in recovering traceability links between artifacts to support CIA process?}
+Charrada, Koziolek and Glinz [10] proposed a way to detect the outdated requirements specification based on the analysis of source code changes in software repository. Their approach first extracted the search query terms based on two conditions of source code element changes (e.g., the addition or deletion of a new method or class or package) and then used these terms to identify outdated requirements. Similarity, Nagano, Ichikawa and Kobayashi [30] presented an identifier conversion  approach  where informal source code identifiers terms are converted formal terms (e.g., convert ‘enc’  to encryption). They combined source code syntax analysis and natives bayes text classification approach to recovering traceability links between source code and requirements. \newline
+De Lucia, Di Penta, Oliveto, Panichella and Panichella [11] introduced common terms filtering approach called a smoothing filter to remove noise terms from requirements documents.  It is based on the assumption requirements, including common terms which are trivial in recovering traceability links between requirements and source code. In contrast, Chaparro, Florez and Marcus [9] investigated the use of observed behaviour terms from a bug report as a search terms to reduce the noise when recovering traceability links between bug report and source code. Observed terms are texts which describe the clear description of misbehaviour of the system (e.g., “the menu does not open when I click the button”).
+Guo, Gibiec and Cleland-Huang [19] proposed an ontology approach to bridging a lexical gap between a health care regulation and system requirements. They developed the ontology mapping model between similar concepts or terms to use in traceability recovery approach. Similarity, Pandanaboyana, Sridharan, Yannelli and Hayes [33] presented an approach to dynamically build a custom thesaurus using terms from system requirements and WordWeb dictionary.\newline
+Similarly, Eyal-Salman, Seriai and Dony [12] proposed code-topic clustering approach to recovering traceability links between features and source code. The study first clustered a group of similar source code classes together using Vector Space Model and tagged it as a code-topic candidate. Then, code-topics are linked with its corresponding features. Similarity,  Panichella, Dit, Oliveto, Penta, Poshyvanyk and Lucia [34] presented a code-topics clustering approach by using Genetic Algorithm and Latent Dirichlet Allocation (LDA) techniques. 
+In their approach traceability links between source code and use cases are recovered based on predefined topics.  The topics are extracted from source code classes based on the assumption that a class is an abstraction of a domain/solution object and a use case is homogenous and related to one specific topic.
+
+\subsection{(RQ2) Which phases of CIA process are covered? }
+\subsection{(RQ3) What is the common ways for recovering traceability links between artifacts to support CIA process?}
+\section{Discussion}
+\subsection{General findings}
+\subsection{Finding related to RQ1}
+The findings show that a number of studies combined techniques from Information Retrieval (IR), Mining Software Repositories (MSR) and Machine Learning (ML) fields to recover traceability links between requirements and source code to support change impact analysis process. In general, the idea behind IR techniques is based on the assumption that most software artifacts such as requirements, source code, bug report and test cases contain textual description and meaningful source code identifiers [10; 11].  Several studies [13; 19; 25; 28] present the approaches to train ML classification models to predict the validity of ranked candidate links regenerated with IR techniques.  Mining Software Repositories techniques [5; 16] are used to extract metadata information of source code, such as commit messages, co-change information, developer names, commit times, frequency of change to increase the accuracy of traceability links between requirements and source code. Lastly, Natural Language Processing methods, such as word embedding and Deep Neural Network (DNN) are used in the studies to learn the relevance between terms when recovering traceability between NL artifacts to eliminate the terms mismatch problems. 
+\subsection{Finding related to RQ2}
+\subsection{Finding related to RQ3}
+\section{Conclusions and future work}
+\end{document}
